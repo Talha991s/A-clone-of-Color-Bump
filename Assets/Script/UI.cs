@@ -9,4 +9,12 @@ public class UI : MonoBehaviour
     {
         SceneManager.LoadScene(1);
     }
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+    public void BackToMainMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
 }

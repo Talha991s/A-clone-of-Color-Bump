@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager singleton;
+    public GameObject Winscreen;
+    public GameObject LoseScreen;
     public bool GameStarted { get; private set; }
     public bool GameEnded { get; private set; }
     [SerializeField]private float slowmotionfactor = 0.1f;
@@ -61,13 +63,18 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            Invoke("RestartGame", 2);
+            Invoke("WinGame", 2);
         }
         //RestartGame();
     }
     public void RestartGame()
     {
-        SceneManager.LoadScene(0);
+        LoseScreen.SetActive(true);
+      //  SceneManager.LoadScene(1);
+    }
+    public void WinGame()
+    {
+        Winscreen.SetActive(true);
     }
 
     // Update is called once per frame
