@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+
 public class PlayerMovement : MonoBehaviour
 {
     
@@ -12,11 +13,8 @@ public class PlayerMovement : MonoBehaviour
     Transform playertransform ;
     // [SerializeField] private Rigidbody rb;
     [SerializeField] private float WallDistance = 5.0f;
-    
 
-
-
-
+   
     private void Awake()
     {
         playertransform = transform;
@@ -24,7 +22,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void OnMovement(InputValue value)
     {
-        Debug.Log(value.Get());
+        //Debug.Log(value.Get());
         InputVector = value.Get<Vector2>();
     }
 
@@ -55,4 +53,14 @@ public class PlayerMovement : MonoBehaviour
         transform.position = pos;
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (GameManager.singleton.GameEnded) return;
+
+
+        if(collision.gameObject.tag =="Enemy")
+        {
+            GameManager.singleton.EndGame(false);
+        }
+    }
 }
