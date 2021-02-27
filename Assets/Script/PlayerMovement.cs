@@ -38,6 +38,15 @@ public class PlayerMovement : MonoBehaviour
         //rb.AddForce(MovementDirection);
      
     }
+    private void FixedUpdate()
+    {
+        if (GameManager.singleton.GameEnded) return;
+
+        if(GameManager.singleton.GameStarted)
+        {
+            playertransform.position += Vector3.forward*0.2f*Time.deltaTime;
+        }
+    }
 
     private void LateUpdate()
     {
